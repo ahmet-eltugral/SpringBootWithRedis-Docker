@@ -34,15 +34,15 @@ public class StudentController {
     {
        return studentService.saveStudent(student);
     }
-    @GetMapping
+    @GetMapping("/getById")
     public StudentDTO StudentgetById(@RequestParam Integer id){
         return studentService.getById(id);
     }
-    @PostConstruct
+    /*@PostConstruct
     public void saveStudent(){
         Student student = new Student();
         student.setId(1);
         student.setName("ahmet");
         studentRepository.save(student);
-    }
+    }*/
 }
