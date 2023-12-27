@@ -1,5 +1,6 @@
 package com.javalaniyoruz.springredis.controller;
 
+import com.javalaniyoruz.springredis.service.RedisLogService;
 import com.javalaniyoruz.springredis.serviceImpl.RedisMessageSubscriber;
 import com.javalaniyoruz.springredis.serviceImpl.RedisMessagePublisher;
 
@@ -26,14 +27,20 @@ public class RedisController {
     private final RedisMessagePublisher messagePublisher;
 
     private final RedisMessageSubscriber redisMessageSubscriber;
+    private final RedisLogService redisLogService;
 
     @PostMapping("/publish")
     public void publishMessage(@RequestBody String message) {
         logger.info("Publishing : {}", message);
         messagePublisher.publish(message);
+        redisLogService.logMessage("messageLog", message);
     }
     @GetMapping("/subscribe")
+
     public List<String> getMessages() {
+        logger.info("Subscribing : {}",redisMessageSubscriber.getMessages());
+        redisLogService.logMessageList("Subscribing : {}",redisMessageSubscriber.getMessages());
         return redisMessageSubscriber.getMessages();
+
     }
 }
