@@ -41,6 +41,5 @@ public class RedisController {
         logger.info("Subscribing : {}",redisMessageSubscriber.getMessages());
         redisLogService.logMessageList("Subscribing : {}",redisMessageSubscriber.getMessages());
         return redisMessageSubscriber.getMessages();
-
     }
 }
